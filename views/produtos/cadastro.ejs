@@ -1,0 +1,65 @@
+<%- include('../partials/header') -%>
+
+<% if(nome) { %>
+    <div class="alert alert-success" role="alert">
+        Produto "<%= nome %>" cadastrado com sucesso!
+      </div>
+<% } %>
+<form class="col-8 offset-2 mt-3" action="guardar" method="POST" >
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title mb-0">Novo Produto</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label> <b>COD PRODUTO</b> </label>
+                        <input class="form-control" name="codigo" required placeholder="" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label><b>NOME PRODUTO</b></label>
+                        <input class="form-control" name="nome" required placeholder="" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label><b>DESCRIÇÃO</b></label>
+                        <!-- <input class="text-area" name="descricao" placeholder="..." /> -->
+                        <textarea class="form-control" required id="exampleFormControlTextarea1" name="desc" rows="3"
+                        placeholder="Informações complementares"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label><b>STATUS</b></label><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="status"  required id="rdb-ativo" value=TRUE>
+                            <label class="form-check-label" for="rdb-ativo">
+                                Ativo
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="status" required id="rdb-inativo" value=FALSE>
+                            <label class="form-check-label" for="rdb-inativo">
+                                Inativo
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-right">
+            <button class="btn btn-primary">Salvar</button>
+        </div>
+    </div>
+</form>
+<%- include('../partials/footer') -%>

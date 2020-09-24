@@ -1,0 +1,31 @@
+<%- include('../partials/header') -%>
+<div class="row">
+<table class="table table-dark">
+    <thead>
+        <tr>
+          <th scope="col-3">Código</th>
+          <th scope="col-3">Nome</th>
+          <th scope="col-3">Descrição</th>
+          <th scope="col-3">Ativo</th>
+          <th scope="col">Revisar</th>
+        </tr>
+      </thead>
+      <% data.forEach(function(value){ %>
+      <tr>
+        <td><%= value.codigo %></td>
+        <td><%= value.nome %></td>
+        <td><%= value.descricao %></td>
+        <td><%= value.ativo %></td>
+        <td>
+            <a href="/produto/edit/<%= value.codigo %>"><img src="/images/editar.png" alt="Editar"></a>
+            <a href="/produto/delete/<%= value.codigo %>?_method=DELETE"><img src="/images/deletar.png" alt="Excluir"></a>
+        </td>
+    </tr>
+    <% }) %>
+</table>
+</div>
+
+
+
+
+<%- include('../partials/footer') -%>

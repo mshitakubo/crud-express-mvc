@@ -1,0 +1,58 @@
+<%- include('../partials/header') -%>
+
+<form class="col-8 offset-2 mt-3" action="../editar/<%=codigo%>?_method=PUT" method="POST" >
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title mb-0">Edição</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label> <b>COD PRODUTO</b> </label>
+                        <input class="form-control" name="codigo" placeholder="" disabled="true" value="<%=codigo%>" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label><b>NOME PRODUTO</b></label>
+                        <input class="form-control" name="nome" placeholder="" required value="<%=nome%>" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label><b>DESCRIÇÃO</b></label>
+                        <input class="form-control" name="descricao" placeholder="" required value="<%= descricao %>" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label><b>STATUS</b></label><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="status" required id="status" value=true>
+                            <label class="form-check-label" for="rdb-status">
+                                Ativo
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="status" required id="rdb-inativo" value=false>
+                            <label class="form-check-label" for="rdb-status">
+                                Inativo
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-right">
+            <button class="btn btn-primary">Salvar</button>
+        </div>
+    </div>
+</form>
+<%- include('../partials/footer') -%>
