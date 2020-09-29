@@ -1,23 +1,34 @@
 const path = require('path');
 const fs = require('fs');
-
+const {check, validationResult, body} = require ('express-validator')
 
 module.exports = {
     cadastro: function(req, res){
-        res.render('./produtos/cadastro', {nome: undefined})
+        res.render('./produtos/cadastro')
     },
-    guardar: function(req, res){
+    guardar: function (req, res) {
+        let listaDeErrors = validationResult(req)
+
         let jsonProdutos = fs.readFileSync(path.join('data', 'produtos.json'))
         jsonProdutos = JSON.parse(jsonProdutos)
-        jsonProdutos.push({
-            nome: req.body.nome,
-            codigo: req.body.codigo,
-            descricao: req.body.desc,
-            ativo: req.body.status
-        })
-        jsonProdutos = JSON.stringify(jsonProdutos)
-        fs.writeFileSync(path.join('data','produtos.json'),jsonProdutos)
-        res.render('./produtos/cadastro', {nome: req.body.nome})
+
+
+        if (listaDeErrors.isEmpty()) {
+            jsonProdutos.push({
+                nome: req.body.nome,
+                codigo: req.body.codigo,
+                descricao: req.body.desc,
+                ativo: req.body.status
+            })
+
+            jsonProdutos = JSON.stringify(jsonProdutos)
+
+            fs.writeFileSync(path.join('data', 'produtos.json'), jsonProdutos)
+            res.render('./produtos/cadastro', { nome: req.body.nome })
+
+        } else {
+            res.render('./produtos/cadastro', { errors: listaDeErrors.errors })
+        }
     },
     listar: function(req, res) {
         let jsonProdutos = fs.readFileSync(path.join('data', 'produtos.json'),{encoding:'utf-8'})
@@ -80,7 +91,6 @@ module.exports = {
     },
     saveDelete: function(req, res){
         let {codigo} = req.params
-        console.log(codigo)
         let jsonProdutos = fs.readFileSync(path.join('data', 'produtos.json'),{encoding:'utf-8'})
         jsonProdutos = JSON.parse(jsonProdutos)
 

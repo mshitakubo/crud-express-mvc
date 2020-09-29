@@ -1,6 +1,8 @@
 const path = require('path');
 const fs = require('fs');
 const bcrypt = require('bcrypt')
+const {validationResult, body} = require ('express-validator')
+
 
 module.exports = {
     cadastro: function (req, res) {
@@ -27,6 +29,12 @@ module.exports = {
         res.render('./usuario/login')
     },
     validaLogin: function (req, res) {
+        let errors = validationResult(req)
+
+        if(!errors.isEmpty()){
+            return res.render('login',{errors :errors.errors})
+        }
+
         let { email, senha } = req.body
         let usuarioSalvo = fs.readFileSync(path.join('data', 'usuarios.json'), { encoding: 'utf-8' })
         usuarioSalvo = JSON.parse(usuarioSalvo)

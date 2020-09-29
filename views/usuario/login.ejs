@@ -1,4 +1,15 @@
 <%- include('../partials/header') -%>
+
+<% if(typeof errors != 'undefined'){ %>
+<ul>
+<% for(var i = 0; i < errors.length; i++) { %>
+    <div class="alert alert-success" role="alert">
+        <li> <%= errors[i].msg %></li>
+      </div>
+<% } %>
+</ul>
+<% } %>
+
 <div class="col-6 offset-2">
     <form class="card" action="/usuario/validaLogin" method="POST">
         <div class="card-header">

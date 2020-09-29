@@ -1,11 +1,28 @@
 <%- include('../partials/header') -%>
 
-<% if(nome) { %>
-    <div class="alert alert-success" role="alert">
-        Produto "<%= nome %>" cadastrado com sucesso!
-      </div>
-<% } %>
+
 <form class="col-8 offset-2 mt-3" action="guardar" method="POST" >
+    <% if(typeof(nome) != 'undefined') { %>
+        <div class="alert alert-success" role="alert">
+            Produto "<%= nome %>" cadastrado com sucesso!
+          </div>
+    <% } %>
+    <% if(typeof(codigo) != 'undefined') { %>
+        <div class="alert alert-danger" role="alert">
+            Código <b><%= codigo %></b> já cadastrado! 
+          </div>
+    <% } %>
+
+    <% if(typeof(errors) != 'undefined') { %>
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                <% errors.forEach((error)=>{ %>
+                    <li> <%= error.msg %></li>
+               <% })%>
+            </ul>
+        </div>
+    <% } %>
+    
     <div class="card">
         <div class="card-header">
             <h2 class="card-title mb-0">Novo Produto</h2>
