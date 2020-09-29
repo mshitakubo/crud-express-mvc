@@ -94,8 +94,8 @@ module.exports = {
         let jsonProdutos = fs.readFileSync(path.join('data', 'produtos.json'),{encoding:'utf-8'})
         jsonProdutos = JSON.parse(jsonProdutos)
 
-        let teste = jsonProdutos.filter(produto => produto.codigo != codigo)
-        jsonProdutos = JSON.stringify(teste)
+        let newJson = jsonProdutos.filter(produto => produto.codigo != codigo)
+        jsonProdutos = JSON.stringify(newJson)
         
         fs.writeFileSync(path.join('data','produtos.json'),jsonProdutos)
         jsonProdutos = JSON.parse(jsonProdutos)

@@ -7,7 +7,7 @@ let auth = require('../middlewares/auth')
 let noRepeat = require('../middlewares/norepeat')
 
 // auth,
-router.get('/cadastro',auth, ProdutoController.cadastro);
+router.get('/cadastro', ProdutoController.cadastro);
 router.post('/guardar',[
     check('codigo').isLength({min:3}).withMessage('O código deve conter no mínimo três caracteres;'),
     check('nome').isLength({min:3}).withMessage('O nome deve conter no mínimo três caracteres;'),
