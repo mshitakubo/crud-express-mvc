@@ -13,11 +13,14 @@ router.post('/guardar',[
     check('nome').isLength({min:3}).withMessage('O nome deve conter no mínimo três caracteres;'),
     check('desc').isLength({min:10}).withMessage('A descrição deve conter no mínimo dez caracteres;'),
 ], noRepeat, ProdutoController.guardar);
+
 router.get('/', ProdutoController.listar);
+
 router.get('/edit/:codigo',auth, ProdutoController.viewAttForm);
 router.put('/editar/:codigo', ProdutoController.editar);
+
 router.get('/delete/:codigo',auth, ProdutoController.deletar);
-router.get('/saveDelete/:codigo', ProdutoController.saveDelete);
+router.delete('/saveDelete/:codigo', ProdutoController.saveDelete);
 
 
 module.exports = router;

@@ -2,6 +2,18 @@ const path = require('path');
 const fs = require('fs');
 const {check, validationResult, body} = require ('express-validator')
 
+const Sequelize = require('sequelize')
+const sequelize = new Sequelize('produtos', 'root', 'Entrada.1234',{
+    host: "localhost",
+    dialect: 'mysql'
+})
+
+sequelize.authenticate().then(function(){
+    console.log('Conectado com sucesso!')
+}).catch(function(erro){
+    console.log('Falha ao se conectar: '+ erro)
+})
+
 module.exports = {
     cadastro: function(req, res){
         res.render('./produtos/cadastro')
@@ -15,9 +27,9 @@ module.exports = {
 
         if (listaDeErrors.isEmpty()) {
             jsonProdutos.push({
-                nome: req.body.nome,
-                codigo: req.body.codigo,
-                descricao: req.body.desc,
+                nome: req.body.nome.toUpperCase(),
+                codigo: req.body.codigo.toUpperCase(),
+                descricao: req.body.desc.toUpperCase(),
                 ativo: req.body.status
             })
 
