@@ -45,7 +45,7 @@ module.exports = {
     listar: function(req, res) {
         let jsonProdutos = fs.readFileSync(path.join('data', 'produtos.json'),{encoding:'utf-8'})
         jsonProdutos = JSON.parse(jsonProdutos)
-        res.render('./produtos/listar', {data: jsonProdutos, usuario: req.session.usuario})
+        res.status(200).render('./produtos/listar', {data: jsonProdutos, usuario: req.session.usuario})
     },
     viewAttForm: function(req, res){
         let {codigo} = req.params
